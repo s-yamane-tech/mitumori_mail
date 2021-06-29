@@ -1,0 +1,2 @@
+class MitumoriFormsController < ApplicationController
+end
