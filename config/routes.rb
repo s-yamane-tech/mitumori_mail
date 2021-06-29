@@ -8,4 +8,7 @@ Rails.application.routes.draw do
 
   # 確認画面遷移先ルーティング
   post 'mitumori_forms/confirm'
+
+  # 送信完了画面遷移先ルーティング
+  post 'mitumori_forms/complete'
 end
