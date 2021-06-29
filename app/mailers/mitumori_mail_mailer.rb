@@ -1,0 +1,2 @@
+class MitumoriMailMailer < ApplicationMailer
+end
