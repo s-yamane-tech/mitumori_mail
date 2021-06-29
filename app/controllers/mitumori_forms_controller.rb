@@ -17,6 +17,15 @@ class MitumoriFormsController < ApplicationController
         end
     end
 
+		# 送信完了画面遷移時
+		def complete
+			@mitumori_form = MitumoriForm.new(params[:mitumori_form].permit(:mitumori_name, :name, :email, :radio, :detail))    
+    	MitumoriMailMailer.send_email(@mitumori_form).deliver
+
+    	# 完了画面を表示
+    	render :action => 'complete'
+		end
+
 		# 入力したデータをパラメータとしてまとめる
   	private
   	def mitumori_form_params
