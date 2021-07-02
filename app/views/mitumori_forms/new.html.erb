@@ -1,6 +1,6 @@
 <%= form_for @mitumori_form, :url => mitumori_forms_confirm_path do |f| %>
 
-	# エラーメッセージ
+	<!--  エラーメッセージ --> 
     <% if @mitumori_form.errors.any? %>
       <div class="alert alert-danger" role="alert">
         <strong>入力内容にエラーがあります</strong>
@@ -12,7 +12,7 @@
       </div>
     <% end %>
   
-		# メールフォーム
+		<!-- メールフォーム--> 
     <table class="table">
       <tr>
         <th>見積タイトル<span>（必須）</span></th>
