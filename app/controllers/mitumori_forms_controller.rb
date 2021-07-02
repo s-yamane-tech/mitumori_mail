@@ -19,7 +19,7 @@ class MitumoriFormsController < ApplicationController
 
 		# 送信完了画面遷移時
 		def complete
-			@mitumori_form = MitumoriForm.new(params[:mitumori_form].permit(:mitumori_name, :name, :email, :radio, :detail))    
+			@mitumori_form = MitumoriForm.new(mitumori_form_params)    
     	MitumoriMailMailer.send_email(@mitumori_form).deliver
 
     	# 完了画面を表示
