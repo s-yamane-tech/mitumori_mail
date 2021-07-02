@@ -1,0 +1,42 @@
+<%= form_for @mitumori_form, :url => mitumori_forms_confirm_path do |f| %>
+
+	# エラーメッセージ
+    <% if @mitumori_form.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <strong>入力内容にエラーがあります</strong>
+        <ul>
+          <% @mitumori_form.errors.each do |attr, msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+		# メールフォーム
+    <table class="table">
+      <tr>
+        <th>見積タイトル<span>（必須）</span></th>
+        <td><%= f.text_field :mitumori_name %></td>
+      </tr>
+      <tr>
+        <th>名前<span>（必須）</span></th>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス<span>（必須）</span></th>
+        <td><%= f.text_field :email %></td>
+      </tr>
+      <tr>
+        <th>ラジオボタン<span></span></th>
+        <td>
+            <label><%= f.radio_button :radio, "ラジオA" %> ラジオA</label>
+		    <label><%= f.radio_button :radio,  "ラジオB" %> ラジオB</label>
+        </td>
+    　</tr>
+    　<tr>
+        <th>詳細（必須）</th>
+        <td><%= f.text_area :detail %></td>
+      </tr>
+    </table>
+    <%= f.submit '確認' %>
+  <% end %>
