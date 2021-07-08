@@ -12,35 +12,47 @@
       </div>
     <% end %>
   
-		<!-- メールフォーム--> 
+		<!-- メールフォーム --> 
     <table class="table">
+
+      <!-- 現場名入力欄 --> 
       <tr>
         <th>現場名：</th>
         <td><%= f.text_field :genba_name %></td>
       </tr>
+
+      <!-- 新築/RF入力欄 -->
       <tr>       
         <td>
           <label><%= f.radio_button :sintiku, "新築" %>新築</label> 
           or
           <label><%= f.radio_button :sintiku, "RF" %>RF</label> 
         </td>
+
         <td>/</td>
+
+        <!-- 戸建て/マンションRF入力欄 -->
         <td>
           <label><%= f.radio_button :kodate, "戸建て" %>戸建て</label> 
           or
           <label><%= f.radio_button :kodate, "マンション" %>マンション</label> 
           (<%= f.text_field :floor %>階)
         </td>
+
+        <!-- 商品名入力欄 -->
         <td>
           <th>商品名：</th>
           <td><%= f.text_field :syohin_name %></td>
         </td>
       </tr>
-      <tr>
+
+      <!-- サイズ入力欄 -->
       <tr>
         <th>①サイズ：</th>
         <td><%= f.text_field :size %></td>
       </tr>
+
+      <!-- ドア位置入力欄 -->
       <tr class = "door_iti_radio">
         <th>
           ②ドア位置：<br>
@@ -75,35 +87,44 @@
           </label>
         </td>
     　</tr>
+
+      <!-- グレード入力欄 -->
       <tr>
         <th>
           ③グレード：<br>
           例．Zグレードなど
         </th>
         <td>
-          <%= f.select :grade, [["Zグレード", "Zグレード"], ["testグレード", "testグレード"]], include_blank: "" %>
+          <%= f.select :grade, 
+            [["Zグレード", "Zグレード"], 
+            ["testグレード", "testグレード"]], 
+            include_blank: "" %>
         </td>
       </tr>
+
+      <!-- 見積希望納期入力欄 -->
       <tr>
         <th>④見積希望納期：</th>
         <td>
-        <%= raw sprintf(
-          f.date_select(
-              :mitumori_kibo_date,
-              use_month_numbers: true,
-              discard_year:true,
-              year_format:true,
-              start_year:        1930,
-              end_year:          (Time.now.year - 18),
-              date_separator:    '%s'), # 年月日区切りをそれぞれ指定
-           '月 ') + '日'
-        %>
+          <%= raw sprintf(
+            f.date_select(
+                :mitumori_kibo_date,
+                use_month_numbers: true,
+                discard_year: true,
+                year_format: true,
+                start_year: 1930,
+                end_year: (Time.now.year - 18), date_separator: '%s'), '月 ') + '日'
+          %>
         </td>
       </tr>
+
+      <!-- 自由記入欄 -->
     　<tr>
         <th>自由記入欄</th>
         <td><%= f.text_area :remark %></td>
       </tr>
+
+      <!-- 見積添付画像選択 -->
       <tr>
         <td>
           <%= f.fields_for @mitumori_image do |i| %>
@@ -111,16 +132,30 @@
           <% end %>
         </td>
       </tr>
+
+      <!-- 送信元メールアドレス選択 -->
       <tr>
         <td>
-          <%= f.select :from_mail_address, [["test01@test", "test01@test"], ["test02@test", "test02@test"]], include_blank: "送信元アドレス" %>
+          <%= f.select :from_mail_address, 
+                [["test01@test", "test01@test"], 
+                ["test02@test", "test02@test"]], 
+                include_blank: "送信元アドレス" 
+          %>
         </td>
       </tr>
+
+      <!-- 送信先メールアドレス選択 -->
       <tr>
         <td>
-          <%= f.select :to_mail_address, [["test01@test", "test01@test"], ["test02@test", "test02@test"]], include_blank: "送信先アドレス" %>
+          <%= f.select :to_mail_address, 
+                [["test01@test", "test01@test"], 
+                ["test02@test", "test02@test"]], 
+                include_blank: "送信先アドレス" 
+          %>
         </td>
       </tr>
     </table>
+
+    <!-- 確認画面遷移ボタン -->
     <%= f.submit '入力完了' %>
   <% end %>
