@@ -5,6 +5,7 @@ class MitumoriFormsController < ApplicationController
     # メールフォーム入力画面遷移時
     def new
         @mitumori_form = MitumoriForm.new
+        @mitumori_image = MitumoriImage.new
     end
 
 		 # 確認画面遷移時
@@ -29,6 +30,6 @@ class MitumoriFormsController < ApplicationController
 		# 入力したデータをパラメータとしてまとめる
   	private
   	def mitumori_form_params
-    	params.require(:mitumori_form).permit(:mitumori_name, :name, :email, :radio, :detail)
+    	params.require(:mitumori_form).permit(:genba_name, :sintiku, :kodate, :floor, :size, :syohin_name, :door_iti, :grade, :mitumori_kibo_date, :remark, :to_mail_address, :from_mail_address)
   	end
 end

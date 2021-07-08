@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+.door_iti_radio input[type="radio"]{
+        display: none;
+}
+.door_iti_radio input[type="radio"] + label img {
+    opacity:0.4;
+}
+.door_iti_radio input[type="radio"]:checked + label img {
+    opacity:1;
+}

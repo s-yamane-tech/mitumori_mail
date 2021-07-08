@@ -15,28 +15,112 @@
 		<!-- メールフォーム--> 
     <table class="table">
       <tr>
-        <th>見積タイトル<span>（必須）</span></th>
-        <td><%= f.text_field :mitumori_name %></td>
+        <th>現場名：</th>
+        <td><%= f.text_field :genba_name %></td>
       </tr>
-      <tr>
-        <th>名前<span>（必須）</span></th>
-        <td><%= f.text_field :name %></td>
-      </tr>
-      <tr>
-        <th>メールアドレス<span>（必須）</span></th>
-        <td><%= f.text_field :email %></td>
-      </tr>
-      <tr>
-        <th>ラジオボタン<span></span></th>
+      <tr>       
         <td>
-            <label><%= f.radio_button :radio, "ラジオA" %> ラジオA</label>
-		    <label><%= f.radio_button :radio,  "ラジオB" %> ラジオB</label>
+          <label><%= f.radio_button :sintiku, "新築" %>新築</label> 
+          or
+          <label><%= f.radio_button :sintiku, "RF" %>RF</label> 
+        </td>
+        <td>/</td>
+        <td>
+          <label><%= f.radio_button :kodate, "戸建て" %>戸建て</label> 
+          or
+          <label><%= f.radio_button :kodate, "マンション" %>マンション</label> 
+          (<%= f.text_field :floor %>階)
+        </td>
+        <td>
+          <th>商品名：</th>
+          <td><%= f.text_field :syohin_name %></td>
+        </td>
+      </tr>
+      <tr>
+      <tr>
+        <th>①サイズ：</th>
+        <td><%= f.text_field :size %></td>
+      </tr>
+      <tr class = "door_iti_radio">
+        <th>
+          ②ドア位置：<br>
+          ※画像を選択してください
+        </th>
+        <td>
+          <%= f.radio_button :door_iti, "RL" %> 
+          <label for="mitumori_form_door_iti_rl">
+            <%= image_tag 'RL.png' %><br>
+            RL
+          </label>
+        </td>
+        <td>
+          <%= f.radio_button :door_iti, "LR" %> 
+          <label for="mitumori_form_door_iti_lr">
+            <%= image_tag 'LR.png' %><br>
+            LR
+          </label>
+        </td>
+        <td>
+          <%= f.radio_button :door_iti, "RC" %> 
+          <label for="mitumori_form_door_iti_rc">
+            <%= image_tag 'RC.png' %><br>
+            RC
+          </label>
+        </td>
+        <td>
+          <%= f.radio_button :door_iti, "LC" %> 
+          <label for="mitumori_form_door_iti_lc">
+            <%= image_tag 'LC.png' %><br>
+            LC
+          </label>
         </td>
     　</tr>
+      <tr>
+        <th>
+          ③グレード：<br>
+          例．Zグレードなど
+        </th>
+        <td>
+          <%= f.select :grade, [["Zグレード", "Zグレード"], ["testグレード", "testグレード"]], include_blank: "" %>
+        </td>
+      </tr>
+      <tr>
+        <th>④見積希望納期：</th>
+        <td>
+        <%= raw sprintf(
+          f.date_select(
+              :mitumori_kibo_date,
+              use_month_numbers: true,
+              discard_year:true,
+              year_format:true,
+              start_year:        1930,
+              end_year:          (Time.now.year - 18),
+              date_separator:    '%s'), # 年月日区切りをそれぞれ指定
+           '月 ') + '日'
+        %>
+        </td>
+      </tr>
     　<tr>
-        <th>詳細（必須）</th>
-        <td><%= f.text_area :detail %></td>
+        <th>自由記入欄</th>
+        <td><%= f.text_area :remark %></td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.fields_for @mitumori_image do |i| %>
+            <%= i.file_field :image %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.select :from_mail_address, [["test01@test", "test01@test"], ["test02@test", "test02@test"]], include_blank: "送信元アドレス" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.select :to_mail_address, [["test01@test", "test01@test"], ["test02@test", "test02@test"]], include_blank: "送信先アドレス" %>
+        </td>
       </tr>
     </table>
-    <%= f.submit '確認' %>
+    <%= f.submit '入力完了' %>
   <% end %>
