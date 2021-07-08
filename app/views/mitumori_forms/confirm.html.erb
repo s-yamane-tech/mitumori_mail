@@ -69,7 +69,14 @@
     <tr>
       <th>見積希望納期</th>
       <td>
-        <%= f.hidden_field :mitumori_kibo_date %>
+      <%= raw sprintf(
+            f.date_select(
+                :mitumori_kibo_date,
+                use_hidden: true,
+                selected: Date.new(@mitumori_form.mitumori_kibo_date[1],@mitumori_form.mitumori_kibo_date[2],@mitumori_form.mitumori_kibo_date[3]),
+            )
+          )
+          %>
         <%= @mitumori_form.mitumori_kibo_date[2] %> 月 
         <%= @mitumori_form.mitumori_kibo_date[3] %> 日
       </td>
