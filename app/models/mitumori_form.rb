@@ -1,5 +1,6 @@
 class MitumoriForm
     include ActiveModel::Model
+    include ActiveRecord::AttributeAssignment
     
     # 使い捨てカラム
     attr_accessor :genba_name, 
