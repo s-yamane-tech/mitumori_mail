@@ -1,6 +1,13 @@
-見積タイトル: <%= @mitumori_form.mitumori_name %>
-名前: <%= @mitumori_form.name %>
-メール: <%= @mitumori_form.email %>
-ラジオ: <%= @mitumori_form.radio %>
-詳細:
-<%= @mitumori_form.detail %>
+現場名: <%= @mitumori_form.genba_name %>
+新築: <%= @mitumori_form.sintiku %>
+戸建: <%= @mitumori_form.kodate %>
+      <% if @mitumori_form.kodate == "マンション" %>
+        (<%= @mitumori_form.floor %>階)
+      <% end %> 
+商品名： <%= @mitumori_form.syohin_name %>
+サイズ: <%= @mitumori_form.size %>
+ドア位置: <%= @mitumori_form.door_iti %>
+グレード: <%= @mitumori_form.grade %>
+見積希望納期:<%= @mitumori_form.mitumori_kibo_date[2] %>月 <%= @mitumori_form.mitumori_kibo_date[3] %> 日
+自由記入欄:
+<%= @mitumori_form.remark %>
