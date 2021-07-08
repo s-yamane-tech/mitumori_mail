@@ -66,3 +66,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise-security'
 # 環境変数設定
 gem 'dotenv-rails'
+# 画像投稿機能
+gem 'carrierwave'
+# 画像編集機能
+gem 'mini_magick'
+
