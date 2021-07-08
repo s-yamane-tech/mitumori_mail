@@ -1,0 +1,2 @@
+class MitumoriImage < ApplicationRecord
+end
