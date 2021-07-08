@@ -98,6 +98,9 @@
     <%= p.hidden_field :image_cache %>
   <% end %>
   
+  <%= f.hidden_field :from_mail_address %>
+  <%= f.hidden_field :to_mail_address %>
+  
   <!-- メール送信ボタン -->
   <%= f.submit '送信' %>
 <% end %>

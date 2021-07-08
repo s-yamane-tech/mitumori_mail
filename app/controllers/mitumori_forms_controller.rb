@@ -12,6 +12,8 @@ class MitumoriFormsController < ApplicationController
     def confirm
         @mitumori_image = MitumoriImage.new(image_confirm_params[:mitumori_image])
         @mitumori_form = MitumoriForm.new(mitumori_form_params)
+
+        # 入力チェック
         if @mitumori_form.valid?
           render :confirm
         else
@@ -19,13 +21,17 @@ class MitumoriFormsController < ApplicationController
         end
     end
 
-		# 送信完了画面遷移時
+		# メール送信及び添付画像保存
 		def complete
-			@mitumori_form = MitumoriForm.new(mitumori_form_params)    
+      # 添付画像保存      
+      @mitumori_form = MitumoriForm.new(mitumori_form_params) 
+      @mitumori_image = MitumoriImage.new(image_complete_params[:mitumori_image])
+      @mitumori_image.genba_name = @mitumori_form.genba_name
+      @mitumori_image.save!
+			
+      # メール送信
     	MitumoriMailMailer.send_email(@mitumori_form).deliver
-
-    	# 完了画面を表示
-    	render :action => 'complete'
+      redirect_to root_path
 		end
 
 		# 入力したデータをパラメータとしてまとめる
@@ -52,5 +58,11 @@ class MitumoriFormsController < ApplicationController
     def image_confirm_params
       params.require(:mitumori_form)
             .permit(mitumori_image:[:image])
+    end
+
+    # メール送信及び画像保存時の添付画像用パラメータ
+    def image_complete_params
+      params.require(:mitumori_form)
+            .permit(mitumori_image:[:image_cache])
     end 
 end
