@@ -1,40 +1,96 @@
 <%= form_for @mitumori_form, :url => mitumori_forms_complete_path do |f| %>
   <table class="table">
+
+  <!-- 現場名 --> 
     <tr>
-      <th>見積タイトル</th>
+      <th>現場名</th>
       <td>
-        <%= f.hidden_field :mitumori_name %>
-        <%= @mitumori_form.mitumori_name %>
+        <%= f.hidden_field :genba_name %>
+        <%= @mitumori_form.genba_name %>
       </td>
     </tr>
+
+    <!-- 新築/RF -->
     <tr>
-      <th>名前</th>
+      <th>新築/戸建</th>       
       <td>
-        <%= f.hidden_field :name %>
-        <%= @mitumori_form.name %>
+      <%= f.hidden_field :sintiku %>
+      <%= @mitumori_form.sintiku %> 
+      </td>
+      <td>/</td>
+      <!-- 戸建て/マンション -->
+      <td>
+        <%= f.hidden_field :kodate %>
+        <%= @mitumori_form.kodate %> 
+        <% if @mitumori_form.kodate == "マンション" %>
+          <%= f.hidden_field :floor %>
+          (<%= @mitumori_form.floor %>階)
+        <% end %>   
       </td>
     </tr>
+
+    <!-- 商品名 -->
     <tr>
-      <th>メールアドレス</th>
+      <th>商品名</th>
       <td>
-        <%= f.hidden_field :email %>
-        <%= @mitumori_form.email %>
+        <%= f.hidden_field :syohin_name %>
+        <%= @mitumori_form.syohin_name %>
       </td>
     </tr>
+
+    <!-- サイズ -->
     <tr>
-      <th>ラジオ</th>
+      <th>サイズ</th>
       <td>
-        <%= f.hidden_field :radio %>
-        <%= @mitumori_form.radio %>
+        <%= f.hidden_field :size %>
+        <%= @mitumori_form.size %>
       </td>
     </tr>
+
+    <!-- ドア位置 -->
     <tr>
-      <th>お問い合わせ内容</th>
+      <th>ドア位置</th>
       <td>
-        <%= f.hidden_field :detail %>
-        <%= simple_format(@mitumori_form.detail) %>
+        <%= f.hidden_field :door_iti %>
+        <%= @mitumori_form.door_iti %>
+      </td>
+    </tr>
+
+    <!-- グレード -->
+    <tr>
+      <th>グレード</th>
+      <td>
+        <%= f.hidden_field :grade %>
+        <%= @mitumori_form.grade %>
+      </td>
+    </tr>
+
+    <!-- 見積希望納期 -->
+    <tr>
+      <th>見積希望納期</th>
+      <td>
+        <%= f.hidden_field :mitumori_kibo_date %>
+        <%= @mitumori_form.mitumori_kibo_date[2] %> 月 
+        <%= @mitumori_form.mitumori_kibo_date[3] %> 日
+      </td>
+    </tr>
+
+    <!-- 備考 -->
+    <tr>
+      <th>備考</th>
+      <td>
+        <%= f.hidden_field :remark %>
+        <%= simple_format(@mitumori_form.remark) %>
       </td>
     </tr>
   </table>
+
+  <!-- 見積添付画像 -->
+  <%= image_tag(@mitumori_image.image.url) %>
+    <%= f.fields_for @mitumori_image do |p| %>
+    <%= p.hidden_field :image_cache %>
+  <% end %>
+  
+  <!-- メール送信ボタン -->
   <%= f.submit '送信' %>
 <% end %>
