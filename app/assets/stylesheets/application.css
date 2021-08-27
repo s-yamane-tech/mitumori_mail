@@ -22,3 +22,9 @@
 .door_iti_radio input[type="radio"]:checked + label img {
     opacity:1;
 }
+
+.flex-container {
+	display: flex;
+	flex-direction: row;
+}
+

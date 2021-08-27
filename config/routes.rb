@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  # ログイン用ルーティング
-  devise_for :users
+  # ログイン用ルーティング(パスワード再設定用ルーティン削除)
+  devise_for :users, skip: [:password]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # ログイン後の遷移先ルーティング

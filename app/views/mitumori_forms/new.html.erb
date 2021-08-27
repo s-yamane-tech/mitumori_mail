@@ -22,28 +22,22 @@
       </tr>
 
       <!-- 新築/RF入力欄 -->
-      <tr>       
+      <tr>    
+      <td></td>
         <td>
+        <!-- 戸建て/マンション入力欄 -->
           <label><%= f.radio_button :sintiku, "新築" %>新築</label> 
           or
           <label><%= f.radio_button :sintiku, "RF" %>RF</label> 
-        </td>
-
-        <td>/</td>
-
-        <!-- 戸建て/マンション入力欄 -->
-        <td>
+          /
+          <!-- 商品名入力欄 -->
           <label><%= f.radio_button :kodate, "戸建て" %>戸建て</label> 
           or
           <label><%= f.radio_button :kodate, "マンション" %>マンション</label> 
           (<%= f.text_field :floor %>階)
         </td>
-
-        <!-- 商品名入力欄 -->
-        <td>
-          <th>商品名：</th>
-          <td><%= f.text_field :syohin_name %></td>
-        </td>
+        <th>商品名：</th>
+        <td><%= f.text_field :syohin_name %></td>
       </tr>
 
       <!-- サイズ入力欄 -->
@@ -58,34 +52,27 @@
           ②ドア位置：<br>
           ※画像を選択してください
         </th>
-        <td>
+        <td class = "flex-container">
           <%= f.radio_button :door_iti, "RL" %> 
           <label for="mitumori_form_door_iti_rl">
             <%= image_tag 'RL.png' %><br>
             RL
           </label>
-        </td>
-        <td>
           <%= f.radio_button :door_iti, "LR" %> 
           <label for="mitumori_form_door_iti_lr">
             <%= image_tag 'LR.png' %><br>
             LR
           </label>
-        </td>
-        <td>
           <%= f.radio_button :door_iti, "RC" %> 
           <label for="mitumori_form_door_iti_rc">
             <%= image_tag 'RC.png' %><br>
             RC
           </label>
-        </td>
-        <td>
           <%= f.radio_button :door_iti, "LC" %> 
           <label for="mitumori_form_door_iti_lc">
             <%= image_tag 'LC.png' %><br>
             LC
           </label>
-        </td>
       </tr>
 
       <!-- グレード入力欄 -->
@@ -145,7 +132,7 @@
       <!-- 送信先メールアドレス選択 -->
       <tr>
         <td>
-          <%= f.select :to_mail_address, 
+          <%= f.selct :to_mail_address, 
                 [["test01@test", "test01@test"], 
                 ["test02@test", "test02@test"]], 
                 include_blank: "送信先アドレス" 

@@ -93,7 +93,7 @@
   </table>
 
   <!-- 見積添付画像 -->
-  <%= image_tag(@mitumori_image.image.url) %>
+  <%= image_tag(@mitumori_image.image.url, style: "width: 900px; height: 800px;") %>
     <%= f.fields_for @mitumori_image do |p| %>
     <%= p.hidden_field :image_cache %>
   <% end %>
